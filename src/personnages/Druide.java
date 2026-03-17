@@ -1,8 +1,11 @@
 package personnages;
 
+import objets.Chaudron;
+
 public class Druide {
 	private String nom;
 	private int force;
+	private Chaudron chaudron;
 
 	public Druide(String nom, int force) {
 		this.nom = nom;
@@ -19,6 +22,8 @@ public class Druide {
 	}
 	
 	public void fabriquerPotion(int quantite, int forcePotion) {
+		this.chaudron.remplirChaudron(quantite, forcePotion);
+		this.parler("J'ai concocté"+ quantite + "doses de potion magique. Elle a une force de "+ forcePotion+".");
 		
 	}
 	public void booster(Gaulois gaulois) {
