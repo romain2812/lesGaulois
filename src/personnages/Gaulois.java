@@ -1,6 +1,5 @@
 package personnages;
 
-import java.io.ObjectInputStream.GetField;
 
 public class Gaulois {
 	private String nom;
