@@ -15,7 +15,7 @@ public class Druide {
 		System.out.println(prendreParole() + "\"" + texte + "\"");
 	}
 	private String prendreParole() {
-		return "le romain " + this.nom + " : ";
+		return "le Druide " + this.nom + " : ";
 	}
 	
 	public void fabriquerPotion(int quantite, int forcePotion) {
