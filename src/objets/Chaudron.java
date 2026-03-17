@@ -19,9 +19,12 @@ public class Chaudron {
 	
 	
 	public int prendreLouche() {
-		return 2;
-		
+		if(this.resterPotion()) {
+			this.quantitePotion--;
+			return this.forcePotion;
+		}
+		else {
+			return 0;			
+		}				
 	}
-	
-	
 }

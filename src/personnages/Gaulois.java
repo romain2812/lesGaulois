@@ -26,10 +26,14 @@ public class Gaulois {
 	public void frapper(Romain romain) {
 		String nomRomain = romain.getNom();
 		System.out.println(nom + " envoie un grand coup dans la machoire de " + nomRomain);
-		romain.recevoirCoup(this.force / 3);
+		romain.recevoirCoup((this.force *this.effetPotion)/3);
+		if(effetPotion>1) {
+			effetPotion--;
+		}
 	}
 	
 	public void boirePotion(int forcePotion) {
+		this.effetPotion = forcePotion;
 		
 	}
 	
