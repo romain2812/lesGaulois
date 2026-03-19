@@ -1,9 +1,12 @@
 package personnages;
 
+import village_gaulois.Village;
+
 public class Gaulois {
 	private String nom;
 	private int force;
 	private int effetPotion = 1;
+	private Village village = null;
 
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
@@ -35,10 +38,21 @@ public class Gaulois {
 		this.effetPotion = forcePotion;
 
 	}
+	
+	public void setVillage(Village village) {
+		this.village = village;		
+		
+	}
+	
+	public void sePresenter() {
+		
+		
+		
+	}
 
 	@Override
 	public String toString() {
-		return "Gaulois [nom=" + nom + ", force=" + force + "]";
+		return nom;
 	}
 
 	public static void main(String[] args) {
