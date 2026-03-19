@@ -11,40 +11,40 @@ public class Druide {
 		this.nom = nom;
 		this.force = force;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "\"" + texte + "\"");
 	}
+
 	private String prendreParole() {
-		return "le Druide " + this.nom + " : ";
+		return "le Druide " + nom + " : ";
 	}
-	
+
 	public void fabriquerPotion(int quantite, int forcePotion) {
-		this.chaudron.remplirChaudron(quantite, forcePotion);
-		this.parler("J'ai concocté"+ quantite + "doses de potion magique. Elle a une force de "+ forcePotion+".");
-		
+		chaudron.remplirChaudron(quantite, forcePotion);
+		parler("J'ai concocté" + quantite + "doses de potion magique. Elle a une force de " + forcePotion + ".");
+
 	}
+
 	public void booster(Gaulois gaulois) {
 		boolean contientPotion = this.chaudron.resterPotion();
 		String nomGaulois = gaulois.getNom();
-		if(contientPotion) {
-			if(nomGaulois == "Obélix") {
-				this.parler("Non, "+nomGaulois+"Non!...Et tu le sais tres bien !");
-			}
-			else {
+		if (contientPotion) {
+			if (nomGaulois!=null && nomGaulois.equals("Obélix")) {
+				parler("Non, " + nomGaulois + "Non!...Et tu le sais tres bien !");
+			} else {
 				int forcePotion = this.chaudron.prendreLouche();
 				gaulois.boirePotion(forcePotion);
-				this.parler("Tiens "+ nomGaulois+" un peu de potion magique.");
+				parler("Tiens " + nomGaulois + " un peu de potion magique.");
 			}
+		} else {
+			parler("Desole " + nomGaulois + " il n'y a plus une seuke goutte de potion.");
 		}
-		else {
-			this.parler("Desole "+nomGaulois+  " il n'y a plus une seuke goutte de potion.");
-		}
-		
-		
+
 	}
-	
 
 }

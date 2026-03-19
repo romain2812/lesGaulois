@@ -1,6 +1,5 @@
 package personnages;
 
-
 public class Gaulois {
 	private String nom;
 	private int force;
@@ -22,22 +21,20 @@ public class Gaulois {
 	private String prendrearole() {
 		return "Le gaulois " + nom + " : ";
 	}
-	
+
 	public void frapper(Romain romain) {
 		String nomRomain = romain.getNom();
 		System.out.println(nom + " envoie un grand coup dans la machoire de " + nomRomain);
-		romain.recevoirCoup((this.force *this.effetPotion)/3);
-		if(effetPotion>1) {
+		romain.recevoirCoup((this.force * this.effetPotion) / 3);
+		if (effetPotion > 1) {
 			effetPotion--;
 		}
 	}
-	
+
 	public void boirePotion(int forcePotion) {
 		this.effetPotion = forcePotion;
-		
+
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -45,10 +42,9 @@ public class Gaulois {
 	}
 
 	public static void main(String[] args) {
-		Gaulois asterix = new  Gaulois("Asterix", 8);
+		Gaulois asterix = new Gaulois("Asterix", 8);
 		System.out.println(asterix);
-		
-		
+
 	}
 
 }
