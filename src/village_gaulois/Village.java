@@ -13,6 +13,7 @@ public class Village {
 	public Village(String nom, Gaulois chef, int nbVillageoisMax) {
 		this.nom = nom;
 		this.chef = chef;
+		chef.setVillage(this);
 		this.nbVillageoisMax = nbVillageoisMax;
 		tabVilage = new Gaulois [nbVillageoisMax];
 	}
@@ -29,6 +30,13 @@ public class Village {
 		gaulois = village.trouverVillagois(2);
 		System.out.println(gaulois);
 		village.afficherVillageois();
+		Gaulois obelix = new Gaulois("Obelix", 25);
+		village.ajouterVillageois(obelix);
+		village.afficherVillageois();
+		Gaulois doublepolémix = new Gaulois("Doublepolémix ", 4);
+		asterix.sePresenter();
+		abraracourcix.sePresenter();
+		doublepolémix.sePresenter();
 	}
 
 
