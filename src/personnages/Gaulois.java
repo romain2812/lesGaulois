@@ -1,10 +1,14 @@
 package personnages;
 
 import village_gaulois.Village;
+import objets.Equipement;
 
 public class Gaulois {
 	private String nom;
+
 	private int force;
+	private int nbTrophees;
+	private Equipement trophees[] = new Equipement[100];
 	private int effetPotion = 1;
 	private Village village = null;
 	private String etat = null;
@@ -19,19 +23,22 @@ public class Gaulois {
 	}
 
 	public void parler(String texte) {
-		System.out.println(prendrearole() + "\"" + texte + "\"");
+		System.out.println(prendreParole() + "\"" + texte + "\"");
 	}
 
-	private String prendrearole() {
+	private String prendreParole() {
 		return "Le gaulois " + nom + " : ";
 	}
 
 	public void frapper(Romain romain) {
-		String nomRomain = romain.getNom();
-		System.out.println(nom + " envoie un grand coup dans la machoire de " + nomRomain);
-		romain.recevoirCoup((this.force * this.effetPotion) / 3);
-		if (effetPotion > 1) {
-			effetPotion--;
+		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
+		Equipement[] tropheesLocal = romain.recevoirCoup((force / 3) * effetPotion);
+		effetPotion--;
+		if (effetPotion < 1) {
+			effetPotion = 1;
+		}
+		for (int i = 0; tropheesLocal != null && i < tropheesLocal.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = tropheesLocal[i];
 		}
 	}
 
@@ -39,39 +46,31 @@ public class Gaulois {
 		this.effetPotion = forcePotion;
 
 	}
-	
+
 	public void setVillage(Village village) {
 		this.village = village;
-		if (village.getChef()==this) {
+		if (village.getChef() == this) {
 			this.etat = "chef";
-		}
-		else {
+		} else {
 			this.etat = "villagois";
 		}
-		
-		
+
 	}
-	
+
 	public void sePresenter() {
-		if (village==null) {
-			parler("Bonjour, je m'appelle "+nom+". Je voyage de villages en villages.");
-		} 
-		else {
+		String texte = "Bonjour, je m'appelle ";
+		if (village == null) {
+			parler(texte + nom + ". Je voyage de villages en villages.");
+		} else {
 			if (etat == "villagois") {
-				parler("Bonjour, je m'appelle "+nom+" J'habite le village :"+ village.getNom());
-			}
-			else {
-				parler("Bonjour, je m'appelle "+nom+"Je suis le chef le village :"+ village.getNom());
-				
+				parler(texte + nom + " J'habite le village :" + village.getNom());
+			} else {
+				parler(texte + nom + "Je suis le chef le village :" + village.getNom());
+
 			}
 
-		}		
-		
-	}
+		}
 
-	@Override
-	public String toString() {
-		return nom;
 	}
 
 	public static void main(String[] args) {
