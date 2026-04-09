@@ -1,6 +1,8 @@
 package personnages;
 
+import village_gaulois.Musee;
 import village_gaulois.Village;
+
 import objets.Equipement;
 
 public class Gaulois {
@@ -8,10 +10,10 @@ public class Gaulois {
 
 	private int force;
 	private int nbTrophees;
-	private Equipement trophees[] = new Equipement[100];
+	private Equipement[] trophees = new Equipement[100];
 	private int effetPotion = 1;
-	private Village village = null;
-	private String etat = null;
+	private Village village;
+	private String etat;
 
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
@@ -62,15 +64,27 @@ public class Gaulois {
 		if (village == null) {
 			parler(texte + nom + ". Je voyage de villages en villages.");
 		} else {
-			if (etat == "villagois") {
+			if (etat!= null && etat.equals("villagois")) {
 				parler(texte + nom + " J'habite le village :" + village.getNom());
 			} else {
 				parler(texte + nom + "Je suis le chef le village :" + village.getNom());
-
 			}
 
 		}
 
+	}
+	
+	
+	public void faireUneDonnation(Musee musee){
+		if (nbTrophees != 0) {
+			parler("Je donne au musee tous mes trophees:");
+			for (int i = 0; i < nbTrophees; i++) {
+				musee.donnerTrophees(this, trophees[i]);
+				System.out.println(trophees[i]);
+			}
+			nbTrophees = 0;
+		}
+		
 	}
 
 	public static void main(String[] args) {

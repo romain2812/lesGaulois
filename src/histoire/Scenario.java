@@ -4,6 +4,8 @@ import personnages.Gaulois;
 import personnages.Romain;
 import personnages.Druide;
 import objets.Equipement;
+import village_gaulois.*;
+import village_gaulois.*;
 
 //import village_gaulois.Musee;
 
@@ -37,14 +39,14 @@ public class Scenario {
 		} while (minus.getForce() > 0);
 		
 //		PARTIE 5 : a decommenter
-//		milexcus.parler("UN GAU... UN GAUGAU...");
-//		do {
-//			obelix.frapper(milexcus);
-//		} while (milexcus.getForce() > 0);
+		milexcus.parler("UN GAU... UN GAUGAU...");
+		do {
+			obelix.frapper(milexcus);
+		} while (milexcus.getForce() > 0);
 
 
-//		Musee musee = new Musee();
-//		obelix.faireUneDonnation(musee);
+		Musee musee = new Musee();
+		obelix.faireUneDonnation(musee);
 
 	}
 
