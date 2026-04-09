@@ -5,13 +5,13 @@ import objets.Equipement;
 public class Romain {
 	private String nom;
 	private int force;
-	private Equipement[] tabEquipement;
+	private Equipement[] equipements;
 	private int nbEquipement = 0;
 
 	public Romain(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
-		tabEquipement = new Equipement[2];
+		equipements = new Equipement[2];
 		assert isInvariantVerified(force);
 
 	}
@@ -35,29 +35,15 @@ public class Romain {
 		}
 		return false;
 	}
-//
-//	public void recevoirCoup(int forceCoup) {
-//		assert forceCoup >= 0;
-//		int temp = this.force;
-//		this.force = this.force - forceCoup;
-//		if (this.force < 1) {
-//			parler("j'abandonne!");
-//		} else {
-//			parler("Aie");
-//		}
-//		assert isInvariantVerified(force);
-//		assert temp > this.force;
-//	}
 
 	
 	
 	public Equipement[] recevoirCoup(int forceCoup) {
 		Equipement[] equipementEjecte = null;
-		forceCoup = CalculResistanceEquipement(forceCoup);
+		forceCoup = calculResistanceEquipement(forceCoup);
 		force -= forceCoup;
 		if(force == 0) {
 			parler("Aïe");
-			break;
 		}else {
 			equipementEjecte = ejecterEquipement();
 			parler("J'abandonne...");
@@ -84,9 +70,9 @@ public class Romain {
 		forceCoup -= resistanceEquipement;
 		return forceCoup;
 	}
+
+
 	
-	
-		
 	private Equipement[] ejecterEquipement() {
 		Equipement[] equipementEjecte = new Equipement[nbEquipement];
 		System.out.println("L'équipement de " + nom + " s'envole sous la force du coup.");
@@ -112,7 +98,7 @@ public class Romain {
 			break;
 		}
 		case 1: {
-			if (tabEquipement[0] == equipement) {
+			if (equipements[0] == equipement) {
 				System.out.println("Le soldat " + nom + " possède déjà un " + equipement + "!");
 			} else {
 				ajouterEquipement(equipement);
@@ -129,11 +115,15 @@ public class Romain {
 	}
 
 	private void ajouterEquipement(Equipement equipement) {
-		tabEquipement[nbEquipement] = equipement;
+		equipements[nbEquipement] = equipement;
 		System.out.println("Le soldat " + nom + " s’équipe avec un " + equipement + ".");
 		nbEquipement++;
 	}
 
+	public int getForce() {
+		return force;
+	}
+	
 	public static void main(String[] args) {
 		Romain minus = new Romain("Minus", 6);
 		minus.sEquiper(Equipement.BOUCLIER);
